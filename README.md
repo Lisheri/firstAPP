@@ -9,6 +9,9 @@ end
 
 然后删除pods并重新安装
 
+# Mobx 6.x版本变动
+
+6.x的mobx使用方式发生变化, 不能使用@observable, @observalble, 使用以往的模式将不再响应。需要使用函数`makeAutoObservable`
 
 # 生命周期
 
