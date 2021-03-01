@@ -1,4 +1,5 @@
-# ios项目启动, 报错 Cant build react native from box in XCode: 'event2/event-config.h' file not found #30836
+# 报错
+## ios项目启动, 报错 Cant build react native from box in XCode: 'event2/event-config.h' file not found #30836
 
 需注释Podfile下面的
 
@@ -8,6 +9,8 @@ flipper_post_install(installer)
 end
 
 然后删除pods并重新安装
+
+## android报错和java相关直接用android studio打包一次文件
 
 # Mobx 6.x版本变动
 
@@ -26,3 +29,13 @@ end
 + componentWillUpdate 组件将要更新
 + componentDidUpdate 组件已经更新
 + componentWillUnmount 组件已经销毁
+
+# 使用 React Nativgation
+
+## 安装
+
+1. 安装 react-nativgation/native `yarn add @react-navigation/native`
+2. 安装 依赖库 `yarn add react-native-reanimated react-native-gesture-handler react-native-screens react-native-safe-area-context @react-native-community/masked-view`
+3. 安装 stack navigator library `yarn add @react-navigation/stack`
+
+
