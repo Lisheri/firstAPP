@@ -14,9 +14,11 @@
     "@react-native-community/masked-view": "^0.1.10",
     "@react-navigation/native": "^5.9.3",
     "@react-navigation/stack": "^5.14.3",
+    "axios": "^0.21.1",
     "babel-plugin-root-import": "^6.6.0",
     "mobx": "^6.1.7",
     "mobx-react": "^7.1.0",
+    "qs": "^6.9.6",
     "react": "16.13.1",
     "react-native": "0.63.4",
     "react-native-elements": "^3.2.0",
@@ -38,5 +40,6 @@
   },
   "jest": {
     "preset": "react-native"
-  }
+  },
+  "proxy": "http://localhost:3000"
 }

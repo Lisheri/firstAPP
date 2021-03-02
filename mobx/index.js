@@ -10,6 +10,8 @@ class RootStore {
     // @observable
     testName = '测试';
 
+    token = '';
+
     constructor() {
         makeAutoObservable(this)
     }
@@ -20,6 +22,14 @@ class RootStore {
 
     changeTest(name) {
         this.testName = name;
+    }
+
+    setToken(token) {
+        this.token = token;
+    }
+
+    getToken() {
+        return this.token;
     }
 }
 
