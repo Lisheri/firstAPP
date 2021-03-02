@@ -1323,6 +1323,14 @@
   dependencies:
     "@types/istanbul-lib-report" "*"
 
+"@types/jest@^26.0.20":
+  version "26.0.20"
+  resolved "https://r.cnpmjs.org/@types/jest/download/@types/jest-26.0.20.tgz#cd2f2702ecf69e86b586e1f5223a60e454056307"
+  integrity sha1-zS8nAuz2noa1huH1Ijpg5FQFYwc=
+  dependencies:
+    jest-diff "^26.0.0"
+    pretty-format "^26.0.0"
+
 "@types/json-schema@^7.0.3":
   version "7.0.7"
   resolved "https://r.cnpmjs.org/@types/json-schema/download/@types/json-schema-7.0.7.tgz#98a993516c859eb0d5c4c8f098317a9ea68db9ad"
@@ -1356,14 +1364,21 @@
     "@types/react" "*"
     "@types/react-native" "*"
 
-"@types/react-native@*":
+"@types/react-native@*", "@types/react-native@^0.63.50":
   version "0.63.50"
   resolved "https://r.cnpmjs.org/@types/react-native/download/@types/react-native-0.63.50.tgz#cea13fb272983ec585179807d0cb4f84db0952f6"
   integrity sha1-zqE/snKYPsWFF5gH0MtPhNsJUvY=
   dependencies:
     "@types/react" "*"
 
-"@types/react@*":
+"@types/react-test-renderer@^17.0.1":
+  version "17.0.1"
+  resolved "https://r.cnpmjs.org/@types/react-test-renderer/download/@types/react-test-renderer-17.0.1.tgz#3120f7d1c157fba9df0118dae20cb0297ee0e06b"
+  integrity sha1-MSD30cFX+6nfARja4gywKX7g4Gs=
+  dependencies:
+    "@types/react" "*"
+
+"@types/react@*", "@types/react@^17.0.2":
   version "17.0.2"
   resolved "https://r.cnpmjs.org/@types/react/download/@types/react-17.0.2.tgz#3de24c4efef902dd9795a49c75f760cbe4f7a5a8"
   integrity sha1-PeJMTv75At2XlaScdfdgy+T3pag=
@@ -2401,6 +2416,11 @@ core-js-compat@^3.8.1:
     browserslist "^4.16.3"
     semver "7.0.0"
 
+core-js@^1.0.0:
+  version "1.2.7"
+  resolved "https://r.cnpmjs.org/core-js/download/core-js-1.2.7.tgz#652294c14651db28fa93bd2d5ff2983a4f08c636"
+  integrity sha1-ZSKUwUZR2yj6k70tX/KYOk8IxjY=
+
 core-js@^2.4.1:
   version "2.6.12"
   resolved "https://r.cnpmjs.org/core-js/download/core-js-2.6.12.tgz#d9333dfa7b065e347cc5682219d6f690859cc2ec"
@@ -2420,6 +2440,15 @@ cosmiconfig@^5.0.5, cosmiconfig@^5.1.0:
     is-directory "^0.3.1"
     js-yaml "^3.13.1"
     parse-json "^4.0.0"
+
+create-react-class@15.6.0:
+  version "15.6.0"
+  resolved "https://r.cnpmjs.org/create-react-class/download/create-react-class-15.6.0.tgz#ab448497c26566e1e29413e883207d57cfe7bed4"
+  integrity sha1-q0SEl8JlZuHilBPogyB9V8/nvtQ=
+  dependencies:
+    fbjs "^0.8.9"
+    loose-envify "^1.3.1"
+    object-assign "^4.1.1"
 
 cross-fetch@^3.0.4:
   version "3.0.6"
@@ -3159,6 +3188,19 @@ fbjs-scripts@^1.1.0:
     semver "^5.1.0"
     through2 "^2.0.0"
 
+fbjs@^0.8.9, fbjs@~0.8.9:
+  version "0.8.17"
+  resolved "https://r.cnpmjs.org/fbjs/download/fbjs-0.8.17.tgz#c4d598ead6949112653d6588b01a5cdcd9f90fdd"
+  integrity sha1-xNWY6taUkRJlPWWIsBpc3Nn5D90=
+  dependencies:
+    core-js "^1.0.0"
+    isomorphic-fetch "^2.1.1"
+    loose-envify "^1.0.0"
+    object-assign "^4.1.0"
+    promise "^7.1.1"
+    setimmediate "^1.0.5"
+    ua-parser-js "^0.7.18"
+
 fbjs@^1.0.0:
   version "1.0.0"
   resolved "https://r.cnpmjs.org/fbjs/download/fbjs-1.0.0.tgz#52c215e0883a3c86af2a7a776ed51525ae8e0a5a"
@@ -3611,6 +3653,11 @@ image-size@^0.6.0:
   resolved "https://r.cnpmjs.org/image-size/download/image-size-0.6.3.tgz#e7e5c65bb534bd7cdcedd6cb5166272a85f75fb2"
   integrity sha1-5+XGW7U0vXzc7dbLUWYnKoX3X7I=
 
+immutable@~3.7.6:
+  version "3.7.6"
+  resolved "https://r.cnpmjs.org/immutable/download/immutable-3.7.6.tgz#13b4d3cb12befa15482a26fe1b2ebae640071e4b"
+  integrity sha1-E7TTyxK++hVIKib+Gy665kAHHks=
+
 import-fresh@^2.0.0:
   version "2.0.0"
   resolved "https://r.cnpmjs.org/import-fresh/download/import-fresh-2.0.0.tgz#d81355c15612d386c61f9ddd3922d4304822a546"
@@ -4042,7 +4089,7 @@ jest-config@^26.6.3:
     micromatch "^4.0.2"
     pretty-format "^26.6.2"
 
-jest-diff@^26.6.2:
+jest-diff@^26.0.0, jest-diff@^26.6.2:
   version "26.6.2"
   resolved "https://r.cnpmjs.org/jest-diff/download/jest-diff-26.6.2.tgz#1aa7468b52c3a68d7d5c5fdcdfcd5e49bd164394"
   integrity sha1-GqdGi1LDpo19XF/c381eSb0WQ5Q=
@@ -4770,7 +4817,7 @@ logkitty@^0.7.1:
     dayjs "^1.8.15"
     yargs "^15.1.0"
 
-loose-envify@^1.0.0, loose-envify@^1.1.0, loose-envify@^1.4.0:
+loose-envify@^1.0.0, loose-envify@^1.1.0, loose-envify@^1.3.1, loose-envify@^1.4.0:
   version "1.4.0"
   resolved "https://r.cnpmjs.org/loose-envify/download/loose-envify-1.4.0.tgz#71ee51fa7be4caec1a63839f7e682d8132d30caf"
   integrity sha1-ce5R+nvkyuwaY4OffmgtgTLTDK8=
@@ -5768,7 +5815,7 @@ pretty-format@^25.1.0, pretty-format@^25.2.0:
     ansi-styles "^4.0.0"
     react-is "^16.12.0"
 
-pretty-format@^26.6.2:
+pretty-format@^26.0.0, pretty-format@^26.6.2:
   version "26.6.2"
   resolved "https://r.cnpmjs.org/pretty-format/download/pretty-format-26.6.2.tgz#e35c2705f14cb7fe2fe94fa078345b444120fc93"
   integrity sha1-41wnBfFMt/4v6U+geDRbREEg/JM=
@@ -5810,7 +5857,7 @@ prompts@^2.0.1:
     kleur "^3.0.3"
     sisteransi "^1.0.5"
 
-prop-types@^15.6.2, prop-types@^15.7.2:
+prop-types@^15.5.10, prop-types@^15.6.2, prop-types@^15.7.2:
   version "15.7.2"
   resolved "https://r.cnpmjs.org/prop-types/download/prop-types-15.7.2.tgz#52c41e75b8c87e72b9d9360e0206b99dcbffa6c5"
   integrity sha1-UsQedbjIfnK52TYOAga5ncv/psU=
@@ -5916,6 +5963,23 @@ react-native-iphone-x-helper@^1.3.0:
   resolved "https://r.cnpmjs.org/react-native-iphone-x-helper/download/react-native-iphone-x-helper-1.3.1.tgz#20c603e9a0e765fd6f97396638bdeb0e5a60b010"
   integrity sha1-IMYD6aDnZf1vlzlmOL3rDlpgsBA=
 
+react-native-legacy-components@^0.1.3:
+  version "0.1.3"
+  resolved "https://r.cnpmjs.org/react-native-legacy-components/download/react-native-legacy-components-0.1.3.tgz#880dd38f5b45497443b6ce330b971120d3318f6e"
+  integrity sha1-iA3Tj1tFSXRDts4zC5cRINMxj24=
+  dependencies:
+    create-react-class "15.6.0"
+    fbjs "~0.8.9"
+    immutable "~3.7.6"
+    prop-types "^15.5.10"
+    react-timer-mixin "^0.13.2"
+    rebound "^0.0.13"
+
+react-native-linear-gradient@^2.5.6:
+  version "2.5.6"
+  resolved "https://r.cnpmjs.org/react-native-linear-gradient/download/react-native-linear-gradient-2.5.6.tgz#96215cbc5ec7a01247a20890888aa75b834d44a0"
+  integrity sha1-liFcvF7HoBJHogiQiIqnW4NNRKA=
+
 react-native-ratings@^7.3.0:
   version "7.4.0"
   resolved "https://r.cnpmjs.org/react-native-ratings/download/react-native-ratings-7.4.0.tgz#2b93c9bdd201238591d09747791b4c55e5862959"
@@ -6008,6 +6072,11 @@ react-test-renderer@16.13.1:
     react-is "^16.8.6"
     scheduler "^0.19.1"
 
+react-timer-mixin@^0.13.2:
+  version "0.13.4"
+  resolved "https://r.cnpmjs.org/react-timer-mixin/download/react-timer-mixin-0.13.4.tgz#75a00c3c94c13abe29b43d63b4c65a88fc8264d3"
+  integrity sha1-daAMPJTBOr4ptD1jtMZaiPyCZNM=
+
 react@16.13.1:
   version "16.13.1"
   resolved "https://r.cnpmjs.org/react/download/react-16.13.1.tgz#2e818822f1a9743122c063d6410d85c1e3afe48e"
@@ -6048,6 +6117,11 @@ readable-stream@^2.0.1, readable-stream@^2.2.2, readable-stream@~2.3.6:
     safe-buffer "~5.1.1"
     string_decoder "~1.1.1"
     util-deprecate "~1.0.1"
+
+rebound@^0.0.13:
+  version "0.0.13"
+  resolved "https://r.cnpmjs.org/rebound/download/rebound-0.0.13.tgz#4a225254caf7da756797b19c5817bf7a7941fac1"
+  integrity sha1-SiJSVMr32nVnl7GcWBe/enlB+sE=
 
 regenerate-unicode-properties@^8.2.0:
   version "8.2.0"
@@ -6865,6 +6939,14 @@ table@^6.0.4:
     slice-ansi "^4.0.0"
     string-width "^4.2.0"
 
+teaset@^0.7.5:
+  version "0.7.5"
+  resolved "https://r.cnpmjs.org/teaset/download/teaset-0.7.5.tgz#325f43171326df0303264ca94d39302fc1f874fb"
+  integrity sha1-Ml9DFxMm3wMDJkypTTkwL8H4dPs=
+  dependencies:
+    prop-types "^15.7.2"
+    react-native-legacy-components "^0.1.3"
+
 temp@0.8.3:
   version "0.8.3"
   resolved "https://r.cnpmjs.org/temp/download/temp-0.8.3.tgz#e0c6bc4d26b903124410e4fed81103014dfc1f59"
@@ -7075,6 +7157,11 @@ typedarray@^0.0.6:
   version "0.0.6"
   resolved "https://r.cnpmjs.org/typedarray/download/typedarray-0.0.6.tgz#867ac74e3864187b1d3d47d996a78ec5c8830777"
   integrity sha1-hnrHTjhkGHsdPUfZlqeOxciDB3c=
+
+typescript@^4.2.2:
+  version "4.2.2"
+  resolved "https://r.cnpmjs.org/typescript/download/typescript-4.2.2.tgz#1450f020618f872db0ea17317d16d8da8ddb8c4c"
+  integrity sha1-FFDwIGGPhy2w6hcxfRbY2o3bjEw=
 
 ua-parser-js@^0.7.18:
   version "0.7.24"
