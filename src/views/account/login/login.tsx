@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { View, Text, SafeAreaView, StyleSheet } from 'react-native';
+import { View, Text, SafeAreaView, StyleSheet, Alert } from 'react-native';
 import {
     CodeField,
     Cursor,
@@ -7,7 +7,12 @@ import {
     useClearByFocusCell,
 } from 'react-native-confirmation-code-field';
 import THBtn from '@/components/THButton';
-import { pxToDp } from '@/utils/stylesKits'
+import { pxToDp } from '@/utils/stylesKits';
+import {loginVerification} from '@/utils/api';
+import {responseInterface} from '@/utils/request';
+import {Toast} from 'teaset';
+import {connect} from 'react-redux';
+import {store} from '@/store/index';
 
 const styles = StyleSheet.create({
     root: { flex: 1, padding: 20, paddingTop: 50 },
@@ -30,7 +35,25 @@ const styles = StyleSheet.create({
 });
 const CELL_COUNT = 6; // * 单元格个数
 
-const ValidateCode = () => {
+interface ValidateCodeInterface {
+    handleBlur(value: string):void;
+}
+
+interface tokenInterface {
+    type: string;
+    value: string;
+}
+interface dispatchInterface {
+    sendActionToChangeToken(action: tokenInterface): void;
+}
+
+
+
+// interface dispatchInterface {
+//     dispatchInterfaceIn: dispatchInterfaceIn
+// }
+
+const ValidateCode = (context: ValidateCodeInterface) => {
     const [value, setValue] = useState('');
     const ref = useBlurOnFulfill({ value, cellCount: CELL_COUNT });
     const [props, getCellOnLayoutHandler] = useClearByFocusCell({
@@ -44,6 +67,8 @@ const ValidateCode = () => {
                 {...props}
                 value={value}
                 onChangeText={setValue}
+                onSubmitEditing={context.handleBlur.bind(this, value)}
+                onBlur={context.handleBlur.bind(this, value)}
                 cellCount={CELL_COUNT}
                 rootStyle={styles.codeFieldRoot}
                 keyboardType="number-pad"
@@ -61,16 +86,53 @@ const ValidateCode = () => {
     );
 }
 
-export default function login(props: any) {
+const mapDispatchToProps = (dispatch: any): dispatchInterface => {
+    return {
+        sendActionToChangeToken: (token: tokenInterface) => {
+            dispatch({
+                type: 'changeToken',
+                value: token
+            })
+        }
+    }
+}
+
+function login(props: any) {
     // const [timeer, setTimer] = useState(60)
     useEffect(() => {
         // * 第二个参数是空数组可以模拟componentDidMount
-    }, [])
+    }, []);
+
+    // * 用于监听store
+    // store.subscribe(() => {
+    //     console.info(store.getState())
+    // })
+
+    const handleBlur = (value: string): void => {
+        if (value.length < 6) {
+            Toast.fail('验证码错误')
+            return
+        }
+        loginVerification({phone: props.phoneNum, vcode: value}).then((res: responseInterface): void => {
+            if (parseInt(res.code) === 10000) {
+                if (res.data.token) {
+                    // * 登陆成功后更新用户token
+                    props.sendActionToChangeToken(res.data.token)
+                }
+                if (res.data.isNew) {
+                    props.navigation.navigate('UserInfo')
+                } else {
+                    Toast.message('欢迎回来，即将跳转到交友页面')
+                }
+            }
+        })
+    }
+
     return (
         <>
             <View><Text style={{ fontSize: pxToDp(25), color: '#888', fontWeight: 'bold' }}>输入六位验证码</Text></View>
             <View style={{ marginTop: pxToDp(15) }}><Text style={{ color: '#888' }}>已发到: +86 {`${props.phoneNum}`}</Text></View>
-            <ValidateCode />
+            <ValidateCode handleBlur={handleBlur}/>
             <View style={{ display: 'flex', flexDirection: 'row', justifyContent: 'center' }}>
                 <THBtn 
                     style={{ width: '85%', height: pxToDp(40), overflow: 'hidden', borderRadius: pxToDp(20) }} 
@@ -83,3 +145,6 @@ export default function login(props: any) {
         </>
     )
 }
+
+// * 高阶函数 connect, 接收两个参数, 第一个表示要添加的属性, 第二个表示要添加的方法 (都是store中的), 返回一个HOC 再接收原组件并将上述属性和方法添加到原组件上
+export default connect(null, mapDispatchToProps)(login)

@@ -29,6 +29,8 @@
     "react-native-safe-area-context": "^3.1.9",
     "react-native-screens": "^2.18.0",
     "react-native-vector-icons": "^8.1.0",
+    "react-redux": "^7.2.2",
+    "redux": "^4.0.5",
     "teaset": "^0.7.5"
   },
   "devDependencies": {
@@ -40,6 +42,7 @@
     "@types/react-native": "^0.63.50",
     "@types/react-test-renderer": "^17.0.1",
     "babel-jest": "^26.6.3",
+    "babel-plugin-module-resolver": "^4.1.0",
     "eslint": "^7.20.0",
     "jest": "^26.6.3",
     "metro-react-native-babel-preset": "^0.65.1",

@@ -6,6 +6,8 @@ import { postAction } from '@/utils/request'
 import THBtn from '@/components/THButton';
 import Login from './login'
 import { debug } from 'react-native-reanimated';
+// import { Toast } from '@/utils/Toast'
+import {Toast} from 'teaset';
 // import axios from 'axios'
 const url = {
     getValidCode: '/user/login'
@@ -51,7 +53,7 @@ export default function Index(props: any): JSX.Element {
                     setCountDownStatus(false);
                     clearTimeout(countDown);
                 }
-            }, 1000);
+            }, 1);
         }
     }, [timer, isStartCountDown]);
 
@@ -59,11 +61,13 @@ export default function Index(props: any): JSX.Element {
     const handleReGetValCode = ():void => {
         postAction(url.getValidCode, { phone: phoneNum }).then((res: any) => {
             if (parseInt(res.code) === 10000) {
+                // * 在axios中统一提示错误和正确的信息
                 // setShowLogin(true)
-                setTimer(60);
+                setTimer(5);
                 setCountDownStatus(true);
+                // Toast.success(res.msg);
             } else {
-                
+                // Toast.fail(res.msg);
             }
         })
     }
@@ -93,8 +97,10 @@ export default function Index(props: any): JSX.Element {
                         setShowLogin(true)
                         props.setFatherPhoneNum(phoneNum)
                         countDownStart();
+                        // Toast.success(res.msg);
                     } else {
-                        setShowLogin(false)
+                        setShowLogin(false);
+                        // Toast.fail(res.msg);
                     }
                 })
             } else {
@@ -148,7 +154,7 @@ export default function Index(props: any): JSX.Element {
             <Image source={require('../../../pictures/profileBackground.jpg')} style={{ width: '100%', height: pxToDp(200) }} />
             <View style={{ padding: pxToDp(20), ...styles.container }}>
                 {
-                    showLogin ? <Login phoneNum={phoneNum} timer={timer} handleReGetValCode={handleReGetValCode}/> : <ShowGetPhoneNumber setFatherPhoneNum={setPhoneNum}/>
+                    showLogin ? <Login phoneNum={phoneNum} timer={timer} handleReGetValCode={handleReGetValCode} navigation={props.navigation}/> : <ShowGetPhoneNumber setFatherPhoneNum={setPhoneNum}/>
                     // showLogin ? <Login phoneNum={phoneNum} /> : <TestInput />
                 }
             </View>

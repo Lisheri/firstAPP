@@ -24,7 +24,15 @@ const style = StyleSheet.create({
     },
 })
 
-export default function index(props: any) {
+interface BtnProps {
+    style?: any;
+    onPress?(): void;
+    disabled?: boolean;
+    textStyle?: any;
+    children?:string | JSX.Element
+}
+
+export default function index(props: BtnProps) {
     return (
         <TouchableOpacity style={props.style} onPress={props.onPress} disabled={props.disabled}>
             <LinerGradient

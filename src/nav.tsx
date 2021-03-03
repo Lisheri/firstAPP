@@ -8,6 +8,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 
 import Login from './views/account/login/index';
 import Demo from '@/views/account/demo';
+import UserInfo from '@/views/account/userInfo/index'
 
 const DetailsScreen = (props: any) => {
     return (
@@ -29,6 +30,7 @@ export default function nav() {
                 <Stack.Screen name="Login" component={Login} />
                 <Stack.Screen name="Details" component={DetailsScreen} />
                 <Stack.Screen name="Demo" component={Demo} />
+                <Stack.Screen name='UserInfo' component={UserInfo} />
             </Stack.Navigator>
         </NavigationContainer>
     )

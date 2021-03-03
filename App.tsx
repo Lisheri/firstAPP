@@ -13,7 +13,11 @@ import Nav from './src/nav'
 // import Login from './src/views/account/login/index';
 
 // * inject 用于注入
-import { Provider, inject, observer, useObserver } from 'mobx-react'
+// import { Provider, inject, observer, useObserver } from 'mobx-react'
+import {store} from '@/store/index';
+
+import { Provider } from 'react-redux';
+
 
 // import MobxUse from './src/views/mobxUse'
 // import TestBtn from './src/views/mobxUse/testBtn'
@@ -79,10 +83,13 @@ import { Provider, inject, observer, useObserver } from 'mobx-react'
 // }))
 
 const App: () => React$Node = () => {
+  console.info(store.getState())
   return (
-    <View style={{flex: 1}}>
-      <Nav />
-    </View>
+    <Provider store={store}>
+      <View style={{flex: 1}}>
+        <Nav />
+      </View>
+    </Provider>
 //     <Provider RootStore={RootStore}>
 //       <StatusBar barStyle="dark-content" />
 //       <SafeAreaView>

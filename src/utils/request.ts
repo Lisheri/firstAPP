@@ -1,7 +1,15 @@
 import axios from "axios";
-import store from '../../mobx/index';
+import {store} from '../store/index';
 import { stringify } from 'qs';
-import Toast from './Toast'
+import ToastOwn from './Toast';
+import {Toast} from 'teaset';
+
+export interface responseInterface{
+    code: number | string;
+    data: any;
+    msg: string
+}
+
 const instance = axios.create({
     baseURL: 'http://localhost:9089',
     timeout: 180000 // 请求超时时间,
@@ -14,11 +22,11 @@ instance.interceptors.request.use(
         if (config.method === 'post') {
 
         }
-        if (store.getToken()) {
-            config.headers['X-Access-Token'] = store.getToken()
+        if (store.getState().token) {
+            config.headers['X-Access-Token'] = store.getState().token
         }
         // * 拦截loading
-        Toast.showLoading('请求中')
+        ToastOwn.showLoading('请求中')
         return config;
     },
     function (err) {
@@ -29,19 +37,23 @@ instance.interceptors.request.use(
 
 // * 响应拦截器
 instance.interceptors.response.use(
-    res => {
+    (res: any): any => {
         // console.info(config.data)
-        if (res.data.code === 10001) {
-            // * 对状态10001拦截处理, 业务异常
-        } else if (res.data.code === 10002) {
+        if (parseInt(res.data.code) === 10001) {
+            // * 对状态10001拦截处理, 业务异常s
+            Toast.fail(res.data.msg);
+        } else if (parseInt(res.data.code) === 10002) {
             // * 对状态10002拦截处理,服务器错误
+            Toast.fail(res.data.msg);
+        } else {
+            Toast.success(res.data.msg);
         }
         // * 返回data的数据
-        Toast.hideLoading();
+        ToastOwn.hideLoading();
         return res.data;
     },
     err => {
-        Toast.hideLoading();
+        ToastOwn.hideLoading();
         return Promise.reject(err)
     }
 )
@@ -49,7 +61,7 @@ instance.interceptors.response.use(
 const defaultUrl = '';
 const defaultParams = '';
 
-export function getAction(url: string = defaultUrl, params: any = defaultParams, options: any) {
+export function getAction(url: string = defaultUrl, params: any = defaultParams, options?: any) {
     return instance({
         method: 'GET',
         url,
@@ -58,7 +70,7 @@ export function getAction(url: string = defaultUrl, params: any = defaultParams,
     })
 }
 
-export function postAction(url: string = defaultUrl, params: any = defaultUrl, options: any) {
+export function postAction(url: string = defaultUrl, params: any = defaultUrl, options?: any) {
     return instance({
         method: 'POST',
         url,
@@ -68,7 +80,7 @@ export function postAction(url: string = defaultUrl, params: any = defaultUrl, o
 }
 
 // * 发起x-www格式请求需要手动指定请求headers中的 Content-type
-export function postAction2(url: string, parameter: any, headers = {}, options: any) {
+export function postAction2(url: string, parameter: any, headers = {}, options?: any) {
     return axios({
         url: url,
         method: 'post',

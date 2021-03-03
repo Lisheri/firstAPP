@@ -9,7 +9,7 @@ const Icon = () => {
     return <ActivityIndicator size="large" color={Theme.toastIconTintColor} />;
 }
 
-Toast.showLoading = (text: string) => {
+Toast.showLoading = (text: string): void => {
     if (customKey) return;
     customKey = Toast.show({
         text,
@@ -19,10 +19,18 @@ Toast.showLoading = (text: string) => {
     });
 }
 
-Toast.hideLoading = () => {
+Toast.hideLoading = (): void => {
     if (!customKey) return;
     Toast.hide(customKey);
     customKey = null;
 }
+
+// Toast.success = (text: string): void => {
+//     Toast.success(text)
+// }
+
+// Toast.error = (text: string): void => {
+//     Toast.fail(text)
+// }
 
 export default Toast;
