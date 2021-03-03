@@ -21,6 +21,7 @@
     "qs": "^6.9.6",
     "react": "16.13.1",
     "react-native": "0.63.4",
+    "react-native-confirmation-code-field": "^6.5.1",
     "react-native-elements": "^3.2.0",
     "react-native-gesture-handler": "^1.10.2",
     "react-native-linear-gradient": "^2.5.6",

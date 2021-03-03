@@ -7,8 +7,9 @@ import { NavigationContainer, StackActions } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 
 import Login from './views/account/login/index';
+import Demo from '@/views/account/demo';
 
-const DetailsScreen = (props) => {
+const DetailsScreen = (props: any) => {
     return (
         <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
             <Text>详情页</Text>
@@ -27,6 +28,7 @@ export default function nav() {
             <Stack.Navigator headerMode="none" initialRouteName="Login">
                 <Stack.Screen name="Login" component={Login} />
                 <Stack.Screen name="Details" component={DetailsScreen} />
+                <Stack.Screen name="Demo" component={Demo} />
             </Stack.Navigator>
         </NavigationContainer>
     )
